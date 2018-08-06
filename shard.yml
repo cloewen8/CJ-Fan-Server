@@ -1,0 +1,13 @@
+name: cj-fan-server
+version: 0.1.0
+
+authors:
+  - your-name-here <your-email-here>
+
+targets:
+  cj-fan-server:
+    main: src/cj-fan-server.cr
+
+crystal: 0.25.1
+
+license: MIT
