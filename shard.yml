@@ -1,13 +1,11 @@
 name: cj-fan-server
-version: 0.1.0
+version: 0.2.0
 
 authors:
-  - your-name-here <your-email-here>
+  - cj <loewencjay@gmail.com>
 
 targets:
   cj-fan-server:
     main: src/cj-fan-server.cr
 
 crystal: 0.25.1
-
-license: MIT

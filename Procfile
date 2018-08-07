@@ -1,1 +1,1 @@
-web: ./app
+web: crystal src/cj-fan-server
