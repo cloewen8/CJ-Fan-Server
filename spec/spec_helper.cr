@@ -1,2 +1,2 @@
 require "spec"
-require "../src/cj-fan-server"
+require "../src/cj-fan-server/*"

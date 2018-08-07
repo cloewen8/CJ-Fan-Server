@@ -1,3 +1,3 @@
-module Cj::Fan::Server
-  VERSION = "0.1.0"
+module CjFanServer
+  VERSION = "0.2.0"
 end
