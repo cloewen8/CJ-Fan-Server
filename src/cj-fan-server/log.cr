@@ -1,5 +1,5 @@
 require "logger"
 
 module CjFanServer
-	LOG = Logger.new(STDOUT, Severity::ERROR)
+	LOG = Logger.new(STDOUT, Logger::Severity::DEBUG)
 end

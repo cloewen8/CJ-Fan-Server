@@ -4,4 +4,5 @@ module CjFanServer
 	
 end
 
+CjFanServer::CONFIG.overload
 CjFanServer::CONFIG.validate

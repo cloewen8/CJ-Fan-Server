@@ -2,3 +2,5 @@
 /lib/
 /bin/
 /.shards/
+
+user_config.yml
