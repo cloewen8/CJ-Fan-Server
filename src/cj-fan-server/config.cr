@@ -9,10 +9,22 @@ module CjFanServer
 	class Config
 		USER_CONFIG_PATH = "user_config.yml"
 
-		@bot_token = ENV["BOT_TOKEN"]?
+		@bot_token: String?
+		@bot_client_id: UInt64?
 
 		# The bot token.
 		property bot_token
+		# The bot client id.
+		property bot_client_id
+
+		def initialize
+			client = ENV["BOT_CLIENT_ID"]?
+
+			@bot_token = ENV["BOT_TOKEN"]?
+			if client
+				@bot_client_id = client.to_u64
+			end
+		end
 
 		# Overloads configurations if a `user_config.yml` file is provided in
 		# the root directory. All configurations are optional. Invalid
@@ -23,6 +35,8 @@ module CjFanServer
 					case key
 					when "bot_token"
 						@bot_token = value.as_s
+					when "bot_client_id"
+						@bot_client_id = value.as_i64.to_u64
 					else
 						raise "Unkown configuration (#{key})"
 					end
@@ -35,6 +49,8 @@ module CjFanServer
 		def validate
 			if @bot_token.nil?
 				raise "Missing bot token."
+			elsif @bot_client_id.nil?
+				raise "Missing bot client id."
 			end
 		end
 	end

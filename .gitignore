@@ -3,4 +3,6 @@
 /bin/
 /.shards/
 
+docs/
+discordcr/
 user_config.yml
