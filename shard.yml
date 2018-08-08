@@ -8,4 +8,8 @@ targets:
   cj-fan-server:
     main: src/cj-fan-server.cr
 
+dependencies:
+  discordcr:
+    github: meew0/discordcr
+
 crystal: 0.25.1

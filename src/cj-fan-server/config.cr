@@ -1,7 +1,6 @@
 require "logger"
 require "yaml"
 require "file"
-require "./log"
 
 module CjFanServer
 	CONFIG = Config.new
@@ -9,9 +8,13 @@ module CjFanServer
 	class Config
 		USER_CONFIG_PATH = "user_config.yml"
 
+		@is_dev: Bool
 		@bot_token: String?
 		@bot_client_id: UInt64?
 
+		# Is in a development environment. Only true if the user_config.yml
+		# file exists.
+		getter is_dev
 		# The bot token.
 		property bot_token
 		# The bot client id.
@@ -20,6 +23,7 @@ module CjFanServer
 		def initialize
 			client = ENV["BOT_CLIENT_ID"]?
 
+			@is_dev = File.exists?(USER_CONFIG_PATH)
 			@bot_token = ENV["BOT_TOKEN"]?
 			if client
 				@bot_client_id = client.to_u64
