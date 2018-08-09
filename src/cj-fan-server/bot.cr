@@ -9,13 +9,23 @@ module CjFanServer
 
 	class Bot
 		@client: Discord::Client?
+		@cache: Discord::Cache?
 
-		protected getter client
+		# The Discord client for the bot.
+		protected def client
+			@client.not_nil!
+		end
+
+		# A cache for Discord objects.
+		protected def cache
+			@cache.not_nil!
+		end
 
 		# Loads all of the bots components.
 		private def load
+			@cache = Discord::Cache.new(client)
 			begin
-				ApprovalProcess.new.load(@client.not_nil!)
+				ApprovalProcess.new.load(client)
 			rescue exc
 				LOG.error("Unable to load approval process.")
 				LOG.error(exc)
@@ -24,13 +34,13 @@ module CjFanServer
 
 		# Starts the bot using the current configuration.
 		def start
-			@client = Discord::Client.new(token: CONFIG.bot_token.to_s,
+			@client = Discord::Client.new(token: CONFIG.bot_token.not_nil!,
 				client_id: CONFIG.bot_client_id,
 				logger: LOG)
-			@client.not_nil!.on_ready do |payload|
+			client.on_ready do
 				load
 			end
-			@client.not_nil!.run
+			client.run
 		end
 	end
 end
