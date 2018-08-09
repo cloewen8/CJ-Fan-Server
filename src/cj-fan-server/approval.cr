@@ -15,9 +15,12 @@ module CjFanServer
 		@refresh_time = 0_f64
 		@code_message = 0_u64
 
+		getter code
+
 		# Load an approval process for users to gain access to the server after
 		# reading the server's rules.
 		def load(client : Discord::Client)
+			if !CONFIG.is_dev
 				message = client.get_channel_messages(RULES_CHANNEL, 1).first
 
 				# Generate the message.
@@ -41,7 +44,7 @@ module CjFanServer
 			end
 		end
 
-		private def generateCode
+		def generateCode
 			@code = String.build(CODE_LENGTH) do |str|
 				chars = 0
 

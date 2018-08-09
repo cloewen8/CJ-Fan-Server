@@ -1,7 +1,7 @@
 require "./spec_helper"
 
 describe CjFanServer do
-	describe "#CONFIG" do
+	describe "#Config" do
 		describe "#validate" do
 			it "must throw if the bot_token is nil" do
 				current = CjFanServer::CONFIG.bot_token
@@ -32,6 +32,16 @@ describe CjFanServer do
 				expect_raises(Exception) do
 					CjFanServer::CONFIG.overload("spec/user_config_invalid.yml")
 				end
+			end
+		end
+	end
+	describe "#ApprovalProcess" do
+		describe "#generateCode" do
+			it "generates a code between [1..2000] characters" do
+				process = CjFanServer::ApprovalProcess.new
+				process.generateCode
+				process.code.size.should be >  0
+				process.code.size.should be <= 2000
 			end
 		end
 	end
