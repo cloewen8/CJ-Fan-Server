@@ -18,25 +18,26 @@ module CjFanServer
 		# Load an approval process for users to gain access to the server after
 		# reading the server's rules.
 		def load(client : Discord::Client)
-			message = client.get_channel_messages(RULES_CHANNEL, 1).first
+				message = client.get_channel_messages(RULES_CHANNEL, 1).first
 
-			# Generate the message.
-			if message && message.author.id.to_u64 == client.client_id
-				LOG.debug("Code message found.")
-				client.edit_message(RULES_CHANNEL, message.id.value, getMessageContent)
-			else
-				LOG.debug("Code message not found.")
-				message = client.create_message(RULES_CHANNEL, getMessageContent)
-			end
-			@code_message = message.id.value
+				# Generate the message.
+				if message && message.author.id.to_u64 == client.client_id
+					LOG.debug("Code message found.")
+					client.edit_message(RULES_CHANNEL, message.id.value, getMessageContent)
+				else
+					LOG.debug("Code message not found.")
+					message = client.create_message(RULES_CHANNEL, getMessageContent)
+				end
+				@code_message = message.id.value
 
-			# Send warnings.
-			client.on_guild_member_add do |member|
-				sendWarning(member)
-			end
-			# Process codes.
-			client.on_message_create do |message|
-				processCode(message)
+				# Send warnings.
+				client.on_guild_member_add do |member|
+					sendWarning(member)
+				end
+				# Process codes.
+				client.on_message_create do |message|
+					processCode(message)
+				end
 			end
 		end
 
