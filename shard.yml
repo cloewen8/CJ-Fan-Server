@@ -4,10 +4,6 @@ version: 0.2.0
 authors:
   - cj <loewencjay@gmail.com>
 
-targets:
-  cj-fan-server:
-    main: src/cj-fan-server.cr
-
 dependencies:
   discordcr:
     github: meew0/discordcr
