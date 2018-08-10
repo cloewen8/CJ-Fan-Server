@@ -12,14 +12,10 @@ module CjFanServer
 		@cache: Discord::Cache?
 
 		# The Discord client for the bot.
-		protected def client
-			@client.not_nil!
-		end
+		protected getter! client
 
 		# A cache for Discord objects.
-		protected def cache
-			@cache.not_nil!
-		end
+		protected getter! cache
 
 		# Loads all of the bots components.
 		private def load

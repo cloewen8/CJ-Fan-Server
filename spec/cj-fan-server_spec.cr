@@ -45,4 +45,22 @@ describe CjFanServer do
 			end
 		end
 	end
+	describe "#CmdsManager" do
+		describe "#register_all" do
+			it "registers a command into an array" do
+				manager = CjFanServer::CmdsManager.new
+				cmd = CjFanServer::LoadCmd.new
+				manager.register(cmd, false)
+				manager.cmds.size.should be >= 1
+			end
+		end
+		describe "#register" do
+			it "loads loadable commands" do
+				manager = CjFanServer::CmdsManager.new
+				cmd = CjFanServer::LoadCmd.new
+				manager.register(cmd, true)
+				cmd.loaded.should eq(true)
+			end
+		end
+	end
 end

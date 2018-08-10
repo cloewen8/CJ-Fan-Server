@@ -19,7 +19,8 @@ module CjFanServer
 
 		# Load an approval process for users to gain access to the server after
 		# reading the server's rules.
-		def load(client : Discord::Client)
+		def load
+			client = BOT.client
 			if !CONFIG.is_dev
 				message = client.get_channel_messages(RULES_CHANNEL, 1).first
 
