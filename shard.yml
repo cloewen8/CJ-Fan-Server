@@ -6,4 +6,5 @@ authors:
 
 dependencies:
   discordcr:
-    github: meew0/discordcr
+    github: cloewen8/discordcr
+    branch: master

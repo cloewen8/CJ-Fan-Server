@@ -78,10 +78,11 @@ module CjFanServer
 		end
 
 		private def updateMessage
-			current_time = Time.utc_now.total_milliseconds
+		Time.epoch_ms(0)
+			current_time = (Time.utc_now - Time.epoch_ms(0)).total_milliseconds
 			if current_time > @refresh_time
-				@refresh_time = Float64.INFINITY
-				client.edit_message(RULES_CHANNEL, @code_message, getMessageContent)
+				@refresh_time = Float64::INFINITY
+				BOT.client.edit_message(RULES_CHANNEL, @code_message, getMessageContent)
 
 				@refresh_time = current_time + REFRESH_DELAY
 			end
