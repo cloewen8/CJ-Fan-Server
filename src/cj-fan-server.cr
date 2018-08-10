@@ -1,3 +1,5 @@
+require "option_parser"
+
 port = 8080
 
 OptionParser.parse! do |opts|
