@@ -21,7 +21,7 @@ module CjFanServer
 		private def load
 			@cache = Discord::Cache.new(client)
 			begin
-				ApprovalProcess.new.load(client)
+				ApprovalProcess.new.load
 			rescue exc
 				LOG.error("Unable to load approval process.")
 				LOG.error(exc)

@@ -7,5 +7,3 @@ authors:
 dependencies:
   discordcr:
     github: meew0/discordcr
-
-crystal: 0.25.1
