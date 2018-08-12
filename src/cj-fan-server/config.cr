@@ -8,9 +8,15 @@ module CjFanServer
 	class Config
 		USER_CONFIG_PATH = "user_config.yml"
 
+		# General
+
 		@is_dev: Bool
 		@bot_token: String?
 		@bot_client_id: UInt64?
+
+		# Cmds
+
+		@cmds_prefix: String
 
 		# Is in a development environment. Only true if the user_config.yml
 		# file exists.
@@ -19,6 +25,8 @@ module CjFanServer
 		property bot_token
 		# The bot client id.
 		property bot_client_id
+		# The prefix for commands.
+		getter cmds_prefix
 
 		def initialize
 			client = ENV["BOT_CLIENT_ID"]?
@@ -28,6 +36,8 @@ module CjFanServer
 			if client
 				@bot_client_id = client.to_u64
 			end
+
+			@cmds_prefix = "/"
 		end
 
 		# Overloads configurations if a `user_config.yml` file is provided in

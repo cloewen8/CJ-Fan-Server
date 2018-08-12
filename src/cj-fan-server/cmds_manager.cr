@@ -11,6 +11,9 @@ module CjFanServer
 		# Loads the commands manager to process commands.
 		def load
 			register_all
+			BOT.client.on_message_create do |message|
+				process_message(message)
+			end
 		end
 
 		# Register all applicable commands.
@@ -29,6 +32,12 @@ module CjFanServer
 				cmd.load
 			end
 			@cmds << cmd
+		end
+
+		def process_message(message)
+			if message.content.starts_with?(BOT.config.cmds_prefix)
+				
+			end
 		end
 	end
 end
